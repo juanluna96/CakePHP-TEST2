@@ -48,21 +48,6 @@ class MeserosController extends AppController
         $this->set('mesero', $mesero);
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Mesero id.
-     * @return \Cake\Http\Response|null|void Renders view
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $mesero = $this->Meseros->get($id, [
-            'contain' => [],
-        ]);
-
-        $this->set(compact('mesero'));
-    }
 
     /**
      * Add method

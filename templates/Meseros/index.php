@@ -14,11 +14,16 @@
                 <td><?php echo $mesero->id; ?></td>
                 <td><?php echo $mesero->nombre; ?></td>
                 <td><?php echo $mesero->apellido; ?></td>
-                <td><?php echo $this->Html->link('Detalle',array('controller'=>'meseros','action'=>'ver', $mesero->id)); ?></td>
-            </tr>
-        <?php endforeach ?>
-    </table>
-</div>
+                <td><?php echo $this->Html->link(
+                    'Detalles',
+                    ['controller' => 'meseros', 'action' => 'ver',$mesero->id],
+                    ['class' => 'btn btn-dark']
+                    // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
+                    ); ?></td>
+                </tr>
+            <?php endforeach ?>
+        </table>
+    </div>
 
 
 
