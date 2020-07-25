@@ -24,10 +24,17 @@
                 <td><?php echo $mesero->nombre; ?></td>
                 <td><?php echo $mesero->apellido; ?></td>
                 <td><?php echo $mesero->telefono; ?></td>
-                <td><?php echo $this->Html->link(
+                <td><?php 
+                echo $this->Html->link(
                     'Detalles',
                     ['controller' => 'meseros', 'action' => 'ver',$mesero->id],
-                    ['class' => 'btn btn-dark']
+                    ['class' => 'btn btn-dark mr-3']
+                    // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
+                );
+                echo $this->Html->link(
+                    'Editar',
+                    ['controller' => 'meseros', 'action' => 'editar',$mesero->id],
+                    ['class' => 'btn btn-dark mr-3']
                     // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
                     ); ?></td>
                 </tr>

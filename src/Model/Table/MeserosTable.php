@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\Rule\IsUnique;
 
 /**
  * Meseros Model
@@ -85,5 +86,11 @@ class MeserosTable extends Table
         ->add('telefono', 'valid', ['rule' => 'numeric', 'message' => 'El telefono necesita ser de tipo numerico']);
 
         return $validator;
+    }
+
+    // Validar datos si existen en la base de datos
+    public function buildRules(RulesChecker $rules): RulesChecker{
+        $rules->add($rules->isUnique(['cedula'],'Este numero de cedula se encuentra en uso.'));
+        return $rules;
     }
 }

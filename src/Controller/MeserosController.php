@@ -63,14 +63,7 @@ class MeserosController extends AppController
         $this->set(compact('mesero'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Mesero id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
+    public function editar($id=null)
     {
         $mesero = $this->Meseros->get($id, [
             'contain' => [],
@@ -78,14 +71,16 @@ class MeserosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $mesero = $this->Meseros->patchEntity($mesero, $this->request->getData());
             if ($this->Meseros->save($mesero)) {
-                $this->Flash->success(__('The mesero has been saved.'));
+                $this->Flash->success(__('El mesero ha sido guardadp.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The mesero could not be saved. Please, try again.'));
+            $this->Flash->error(__('El mesero no ha podido ser editado. Porfavor, intenta de nuevo.'));
         }
         $this->set(compact('mesero'));
     }
+
+
 
     /**
      * Delete method
