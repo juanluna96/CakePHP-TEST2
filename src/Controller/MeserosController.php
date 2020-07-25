@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 use Cake\Event\EventInterface;
+
 /**
  * Meseros Controller
  *
@@ -31,7 +32,7 @@ class MeserosController extends AppController
         $meseros = $this->Meseros->find('all');
         $this->set('meseros',$meseros);
         // $meseros = $this->paginate($this->Meseros);
-        
+
         // $this->set(compact('meseros'));
     }
 
@@ -48,23 +49,16 @@ class MeserosController extends AppController
         $this->set('mesero', $mesero);
     }
 
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
+    public function nuevo()
     {
         $mesero = $this->Meseros->newEmptyEntity();
         if ($this->request->is('post')) {
             $mesero = $this->Meseros->patchEntity($mesero, $this->request->getData());
             if ($this->Meseros->save($mesero)) {
-                $this->Flash->success(__('The mesero has been saved.'));
-
+                $this->Flash->success(__('El mesero ha sido creado.'));
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The mesero could not be saved. Please, try again.'));
+            $this->Flash->error(__('No se pudo crear el mesero.'));
         }
         $this->set(compact('mesero'));
     }

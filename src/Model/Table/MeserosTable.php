@@ -55,32 +55,34 @@ class MeserosTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id')
-            ->allowEmptyString('id', null, 'create');
+        ->integer('id')
+        ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('cedula')
-            ->maxLength('cedula', 10)
-            ->requirePresence('cedula', 'create')
-            ->notEmptyString('cedula');
+        ->scalar('cedula')
+        ->maxLength('cedula', 10)
+        ->requirePresence('cedula', 'create')
+        ->notEmptyString('cedula')
+        ->add('cedula', 'valid', ['rule' => 'numeric', 'message' => 'La cedula necesita ser de tipo numerico']);
 
         $validator
-            ->scalar('nombre')
-            ->maxLength('nombre', 50)
-            ->requirePresence('nombre', 'create')
-            ->notEmptyString('nombre');
+        ->scalar('nombre')
+        ->maxLength('nombre', 50)
+        ->requirePresence('nombre', 'create')
+        ->notEmptyString('nombre');
 
         $validator
-            ->scalar('apellido')
-            ->maxLength('apellido', 50)
-            ->requirePresence('apellido', 'create')
-            ->notEmptyString('apellido');
+        ->scalar('apellido')
+        ->maxLength('apellido', 50)
+        ->requirePresence('apellido', 'create')
+        ->notEmptyString('apellido');
 
         $validator
-            ->scalar('telefono')
-            ->maxLength('telefono', 10)
-            ->requirePresence('telefono', 'create')
-            ->notEmptyString('telefono');
+        ->scalar('telefono')
+        ->maxLength('telefono', 10)
+        ->requirePresence('telefono', 'create')
+        ->notEmptyString('telefono')
+        ->add('telefono', 'valid', ['rule' => 'numeric', 'message' => 'El telefono necesita ser de tipo numerico']);
 
         return $validator;
     }
