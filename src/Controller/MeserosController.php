@@ -80,7 +80,16 @@ class MeserosController extends AppController
         $this->set(compact('mesero'));
     }
 
+    public function eliminar($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
 
+        $mesero = $this->Meseros->get($id);
+        if ($this->Meseros->delete($mesero)) {
+            $this->Flash->success(__('The {0} mesero has been deleted.', $mesero->nombre));
+            return $this->redirect(['action' => 'index']);
+        }
+    }
 
     /**
      * Delete method

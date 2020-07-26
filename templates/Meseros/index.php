@@ -24,23 +24,34 @@
                 <td><?php echo $mesero->nombre; ?></td>
                 <td><?php echo $mesero->apellido; ?></td>
                 <td><?php echo $mesero->telefono; ?></td>
-                <td><?php 
-                echo $this->Html->link(
-                    'Detalles',
-                    ['controller' => 'meseros', 'action' => 'ver',$mesero->id],
-                    ['class' => 'btn btn-dark mr-3']
-                    // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
-                );
-                echo $this->Html->link(
-                    'Editar',
-                    ['controller' => 'meseros', 'action' => 'editar',$mesero->id],
-                    ['class' => 'btn btn-dark mr-3']
-                    // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
-                    ); ?></td>
-                </tr>
-            <?php endforeach ?>
-        </table>
-    </div>
+                <td>
+                    <div class="d-flex justify-content-between" style="max-width: 300px">
+                        <?php 
+                        echo $this->Html->link(
+                            'Detalles',
+                            ['controller' => 'meseros', 'action' => 'ver',$mesero->id],
+                            ['class' => 'btn btn-dark']
+                            // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
+                        );
+                        echo $this->Html->link(
+                            'Editar',
+                            ['controller' => 'meseros', 'action' => 'editar',$mesero->id],
+                            ['class' => 'btn btn-warning text-muted']
+                             // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
+                        ); 
+                        echo $this->Form->postLink(
+                            'Borrar',
+                            ['action' => 'eliminar', $mesero->id],
+                            ['class' => 'btn btn-danger'],
+                            ['confirm' => 'Are you sure?']
+                        );
+                        ?>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+</div>
 
 
 
