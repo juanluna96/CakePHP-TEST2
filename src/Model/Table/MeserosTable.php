@@ -45,6 +45,8 @@ class MeserosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Mesas');
     }
 
     /**

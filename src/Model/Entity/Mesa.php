@@ -6,17 +6,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Mesero Entity
+ * Mesa Entity
  *
  * @property int $id
- * @property string $cedula
- * @property string $nombre
- * @property string $apellido
- * @property string $telefono
+ * @property int $mesero_id
+ * @property int $codigo
+ * @property int $puestos
+ * @property string $posicion
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ *
+ * @property \App\Model\Entity\Mesero $mesero
  */
-class Mesero extends Entity
+class Mesa extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -28,12 +30,12 @@ class Mesero extends Entity
      * @var array
      */
     protected $_accessible = [
-        'cedula' => true,
-        'nombre' => true,
-        'apellido' => true,
-        'telefono' => true,
-        'mesas' => true,
+        'mesero_id' => true,
+        'codigo' => true,
+        'puestos' => true,
+        'posicion' => true,
         'created' => true,
         'modified' => true,
+        'mesero' => true,
     ];
 }

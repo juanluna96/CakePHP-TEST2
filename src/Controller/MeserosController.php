@@ -41,8 +41,7 @@ class MeserosController extends AppController
         if (!$id) {
             throw new Exception("Datos invalidos", 1);
         }
-        $mesero=$this->Meseros->findById($id);
-
+        $mesero=$this->paginate($this->Meseros->findById($id),['contain'=>['Mesas']]);
         if(!$mesero){
             throw new Exception("El mesero no existe", 1);
         }
@@ -53,12 +52,14 @@ class MeserosController extends AppController
     {
         $mesero = $this->Meseros->newEmptyEntity();
         if ($this->request->is('post')) {
+
             $mesero = $this->Meseros->patchEntity($mesero, $this->request->getData());
             if ($this->Meseros->save($mesero)) {
-                $this->Flash->success(__('El mesero ha sido creado.'));
+                $this->Flash->success(__('The mesero has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('No se pudo crear el mesero.'));
+            $this->Flash->error(__('The mesero could not be saved. Please, try again.'));
         }
         $this->set(compact('mesero'));
     }
@@ -71,7 +72,7 @@ class MeserosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $mesero = $this->Meseros->patchEntity($mesero, $this->request->getData());
             if ($this->Meseros->save($mesero)) {
-                $this->Flash->success(__('El mesero ha sido guardadp.'));
+                $this->Flash->success(__('El mesero ha sido guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
