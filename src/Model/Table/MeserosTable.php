@@ -46,7 +46,7 @@ class MeserosTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Mesas');
+        $this->hasMany('Mesas',['dependent'=>true]);
     }
 
     /**

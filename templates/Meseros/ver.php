@@ -5,9 +5,9 @@
 		<p><strong>Telefono: </strong><?php echo $meserito->telefono ?></p>
 		<p><strong>Creado: </strong><?php echo $meserito->created ?></p>
 		<?php if (!empty($meserito->mesas)): ?>
-			<hr>
 			<h3>Encargado de las mesas</h3>
 			<?php foreach ($meserito->mesas as $key => $mesas): ?>
+				<hr>
 				<p><strong>Numero: </strong><?php echo $mesas->codigo ?></p>
 				<p><strong>Numero de puestos: </strong><?php echo $mesas->puestos ?></p>
 				<p><strong>Ubicacion: </strong><?php echo $mesas->posicion ?></p>
