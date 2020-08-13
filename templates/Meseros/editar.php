@@ -7,7 +7,7 @@
 			'label' => '<label class="font-weight-bold mb-2"{{attrs}}>{{text}}:</label>',
 			'error' => '<div class="error-message alert alert-danger mt-2">{{content}}</div>',
 			'button' => '<button class="btn btn-dark mt-3 mx-auto" {{attrs}}>{{text}}</button>',
-			'input' => '<input class="form-control mr-4" type="{{type}}" name="{{name}}"{{attrs}}/>',
+			'input' => '<div class="md-form"> <input class="form-control mr-4" type="{{type}}" name="{{name}}"{{attrs}}/></div>',
 		];
 		$this->Form->setTemplates($myTemplates);
 

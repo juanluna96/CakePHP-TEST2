@@ -19,10 +19,9 @@ class MesasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Meseros'],
+            'contain' => ['Meseros']
         ];
-        $mesas = $this->paginate($this->Mesas);
-
+        $mesas = $this->paginate($this->Mesas, ['order' => ['Mesas.id' => 'ASC']]);
         $this->set(compact('mesas'));
     }
 
@@ -59,8 +58,9 @@ class MesasController extends AppController
             }
             $this->Flash->error(__('The mesa could not be saved. Please, try again.'));
         }
+
         $meseros = $this->Mesas->Meseros->find('list', [
-            'valueField' => 'nombre'
+            'valueField' => ['nombre', 'apellido']
         ]);
         //$meseros = $this->Mesas->Meseros->find('list', ['limit' => 200]);
         $this->set(compact('mesa', 'meseros'));
@@ -87,7 +87,12 @@ class MesasController extends AppController
             }
             $this->Flash->error(__('The mesa could not be saved. Please, try again.'));
         }
-        $meseros = $this->Mesas->Meseros->find('list', ['limit' => 200]);
+        $meseros = $this->Mesas->Meseros->find('list', [
+            'valueField' => function ($row) {
+                return $row['nombre'] . ' ' . $row['apellido'];
+            }
+        ]);
+        //$meseros = $this->Mesas->Meseros->find('list', ['limit' => 200]);
         $this->set(compact('mesa', 'meseros'));
     }
 

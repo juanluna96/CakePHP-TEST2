@@ -8,17 +8,15 @@
             ['class' => 'btn btn-dark mb-3']
             // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
         ); ?>
+           <?php echo $this->Html->link(
+            'Ir a las mesas',
+            ['controller' => 'mesas', 'action' => 'index'],
+            ['class' => 'btn btn-dark mb-3']
+        ); ?>
     </div>
-    <div class="col">
-       <?php echo $this->Html->link(
-        'Ir a las mesas',
-        ['controller' => 'mesas', 'action' => 'index'],
-        ['class' => 'btn btn-dark mb-3']
-    ); ?>
-</div>
 </div>
 
-<table class='table mx-auto mt-3' style="max-width: 110em">
+<table class='table mx-auto mt-3'>
     <thead class="thead-dark">
         <tr>
             <th>ID</th>
@@ -37,33 +35,62 @@
             <td><?php echo $mesero->apellido; ?></td>
             <td><?php echo $mesero->telefono; ?></td>
             <td>
-                <div class="d-flex justify-content-between" style="max-width: 300px">
-                    <?php 
-                    echo $this->Html->link(
-                        'Detalles',
-                        ['controller' => 'meseros', 'action' => 'ver',$mesero->id],
-                        ['class' => 'btn btn-dark']
+                <div class="btn-group" role="group" aria-label="Basic example">
+                   <?php   
+                   echo $this->Html->link(
+                    'Detalles',
+                    ['controller' => 'meseros', 'action' => 'ver',$mesero->id],
+                    ['class' => 'btn btn-dark']
                             // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
-                    );
-                    echo $this->Html->link(
-                        'Editar',
-                        ['controller' => 'meseros', 'action' => 'editar',$mesero->id],
-                        ['class' => 'btn btn-warning text-muted']
+                ); 
+                ?>  
+                <?php 
+                echo $this->Html->link(
+                    'Editar',
+                    ['controller' => 'meseros', 'action' => 'editar',$mesero->id],
+                    ['class' => 'btn btn-warning text-muted']
                              // En caso de querer que se habra en otra pagina se coloca , 'target' => '_blank' delado de la clase
-                    ); 
-                    echo $this->Form->postLink(
-                        'Borrar',
-                        ['action' => 'eliminar', $mesero->id],
-                        ['class' => 'btn btn-danger'],
-                        ['confirm' => 'Are you sure?']
-                    );
-                    ?>
-                </div>
-            </td>
-        </tr>
-    <?php endforeach ?>
+                ); ?>
+                <?php 
+                echo $this->Form->postLink(
+                    'Borrar',
+                    ['action' => 'eliminar', $mesero->id],
+                    ['class' => 'btn btn-danger'],
+                    ['confirm' => 'Are you sure?']
+                );
+                ?>
+            </div>
+
+        </div>
+
+    </td>
+</tr>
+<?php endforeach ?>
 </table>
+
+<div class="container">
+    <ul class="pagination w-25 mx-auto">
+        <?php
+        $this->Paginator->setTemplates([
+            'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'current' => '<li class="active page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>'
+        ]);
+        echo $this->Paginator->prev('<<');
+        echo $this->Paginator->numbers();
+        echo $this->Paginator->next('>>');
+        ?>
+    </ul>
 </div>
 
+</div>
 
+<style>
+    .active a{
+        background-color: #212121!important;
+    }
+</style>
 

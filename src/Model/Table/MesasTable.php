@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\ORM\Rule\IsUnique;
 
 /**
  * Mesas Model
@@ -53,6 +54,8 @@ class MesasTable extends Table
         ]);
     }
 
+
+
     /**
      * Default validation rules.
      *
@@ -69,6 +72,7 @@ class MesasTable extends Table
         ->integer('codigo')
         ->requirePresence('codigo', 'create')
         ->notEmptyString('codigo');
+        
 
         $validator
         ->integer('puestos')
@@ -94,7 +98,7 @@ class MesasTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['mesero_id'], 'Meseros'));
-
+        $rules->add($rules->isUnique(['codigo'], 'Este numero ya se encuentra registrado en la base de datos.'));
         return $rules;
     }
 }

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+
 use Cake\Event\EventInterface;
 
 /**
@@ -30,7 +31,9 @@ class MeserosController extends AppController
     {
         $this->loadModel('meseros');
         $meseros = $this->Meseros->find('all');
-        $this->set('meseros',$meseros);
+        //$this->set('meseros',$meseros);
+        $this->set('meseros', $this->paginate($meseros, ['limit'=>'1']));
+
         // $meseros = $this->paginate($this->Meseros);
 
         // $this->set(compact('meseros'));
@@ -41,8 +44,8 @@ class MeserosController extends AppController
         if (!$id) {
             throw new Exception("Datos invalidos", 1);
         }
-        $mesero=$this->paginate($this->Meseros->findById($id),['contain'=>['Mesas']]);
-        if(!$mesero){
+        $mesero=$this->paginate($this->Meseros->findById($id), ['contain'=>['Mesas']]);
+        if (!$mesero) {
             throw new Exception("El mesero no existe", 1);
         }
         $this->set('mesero', $mesero);
@@ -52,7 +55,6 @@ class MeserosController extends AppController
     {
         $mesero = $this->Meseros->newEmptyEntity();
         if ($this->request->is('post')) {
-
             $mesero = $this->Meseros->patchEntity($mesero, $this->request->getData());
             if ($this->Meseros->save($mesero)) {
                 $this->Flash->success(__('The mesero has been saved.'));
